@@ -7,13 +7,13 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - run: |
-          jar cvf boris.war *
+          jar cvf laurine.war *
     - name: copy file via ssh password
       uses: appleboy/scp-action@master
       with:
-        host: ${{ secrets.HOST_DNS }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.EC2_SSH_KEY }}
-        port: ${{ secrets.DEPLOY_PORT }}
-        source: "boris.war"
+        host:ec2-15-237-190-40.eu-west-3.compute.amazonaws.com
+        username:admin
+        key: ${{ secrets.mot_de_passe}}
+        port: 22
+        source: "laurine.war"
         target: "/opt/tomcat/webapps"
