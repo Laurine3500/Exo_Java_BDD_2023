@@ -72,7 +72,7 @@
 <p>
 <%for (int i = 1; i <= cpt; i++) {
     for (int j = 1; j <= (cpt - i); j++) {
-<%"&nbsp;&nbsp;"%>
+<%="&nbsp;&nbsp;"%>
     }
     for (int k = 1; k <= i; k++) {
 %>*<%
@@ -138,7 +138,15 @@
 <p>5 x 3 = 15</p>
 <p>5 x 4 = 20</p>
 <p>5 x 5 = 25</p>
-
+<%
+    for (int i = 1; i <= cpt; i++) {
+        int result = cpt * i;
+%>
+    <%= cpt %> x <%= i %> = <%= result %><br>
+<%
+    }
+%>
+</p>
 <% } %>
 <p><a href="index.html">Retour au sommaire</a></p>
 </body>
