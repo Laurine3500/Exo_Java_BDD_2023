@@ -39,6 +39,49 @@ B = 20</br>
 C = 15</br>
 Oui C est compris entre A et B</p>
 
+ <form action="#" method="post">
+    <p>Saisir la valeur A : <input type="text" name="a"></p>
+    <p>Saisir la valeur B : <input type="text" name="b"></p>
+    <p>Saisir la valeur C : <input type="text" name="c"></p>
+    <p><input type="submit" value="Vérifier"></p>
+</form>
+
+<%
+    String sa = request.getParameter("a");
+    String sb = request.getParameter("b");
+    String sc = request.getParameter("c");
+
+    if (sa != null && sb != null && sc != null &&
+        !sa.isEmpty() && !sb.isEmpty() && !sc.isEmpty()) {
+
+        try {
+            int a = Integer.parseInt(sa);
+            int b = Integer.parseInt(sb);
+            int c = Integer.parseInt(sc);
+
+            int min = Math.min(a, b);
+            int max = Math.max(a, b);
+%>
+    <h2>Résultat :</h2>
+    <p>
+    <%
+            if (c >= min && c <= max) {
+    %>
+        Oui, C (= <%= c %>) est compris entre A (= <%= a %>) et B (= <%= b %>).
+    <%
+            } else {
+    %>
+        Non, C (= <%= c %>) n'est pas compris entre A (= <%= a %>) et B (= <%= b %>).
+    <%
+            }
+        } catch (NumberFormatException e) {
+    %>
+        <p style="color:red;">Veuillez saisir uniquement des nombres valides.</p>
+    <%
+        }
+    }
+%>
+
 <h2>Exercice 2 : Pair ou Impair ?</h2>
 <p>Écrivez un programme pour vérifier si un nombre est pair ou impair en utilisant une structure if</p>
 
