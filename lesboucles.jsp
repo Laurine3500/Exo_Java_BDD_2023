@@ -70,12 +70,15 @@
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**</br>&nbsp;&nbsp;&nbsp;&nbsp;***</br>&nbsp;&nbsp;****</br>*****</p>
 
 <p>
-<% for (int i = 1; i <= cpt; i++) { %>
-    <% for (int j = 1; j <= i; j--) { %>
-        <%= "*" %>
-    <% } %>
-    <br>
-<% } %>
+<% for (int i = 1; i <= cpt; i++) {
+    for (int j = 1; j <= (cpt - i); j++) {
+%>&nbsp;<% 
+    }
+    for (int k = 1; k <= i; k++) {
+%>*<% 
+    } 
+%><br><% 
+} %>
 </p>
 
 <h2>Exercice 5 : Triangle isocele</h2>
