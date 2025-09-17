@@ -72,7 +72,7 @@
 <p>
 <%for (int i = 1; i <= cpt; i++) {
     for (int j = 1; j <= (cpt - i); j++) {
-<%="&nbsp;&nbsp;"%>
+%>"&nbsp;&nbsp;"<%
     }
     for (int k = 1; k <= i; k++) {
 %>*<%
