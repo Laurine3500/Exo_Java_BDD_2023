@@ -39,48 +39,45 @@ B = 20</br>
 C = 15</br>
 Oui C est compris entre A et B</p>
 
- <form action="#" method="post">
-    <p>Saisir la valeur A : <input type="text" name="a"></p>
-    <p>Saisir la valeur B : <input type="text" name="b"></p>
-    <p>Saisir la valeur C : <input type="text" name="c"></p>
-    <p><input type="submit" value="Vérifier"></p>
+<form action="#" method="post">
+    <p>Saisir la valeur A : <input type="text" name="valeur1"></p>
+    <p>Saisir la valeur B : <input type="text" name="valeur2"></p>
+    <p>Saisir la valeur C : <input type="text" name="valeur3"></p>
+    <p><input type="submit" value="Afficher"></p>
 </form>
 
-<%
-    String sa = request.getParameter("a");
-    String sb = request.getParameter("b");
-    String sc = request.getParameter("c");
+<%-- Récupération de la 3ème valeur --%>
+<% String valeur3 = request.getParameter("valeur3"); %>
 
-    if (sa != null && sb != null && sc != null &&
-        !sa.isEmpty() && !sb.isEmpty() && !sc.isEmpty()) {
+<%-- Vérification si les trois valeurs sont bien saisies --%>
+<% if (valeur1 != null && valeur2 != null && valeur3 != null &&
+       !valeur1.isEmpty() && !valeur2.isEmpty() && !valeur3.isEmpty()) {
 
-        try {
-            int a = Integer.parseInt(sa);
-            int b = Integer.parseInt(sb);
-            int c = Integer.parseInt(sc);
+    try {
+        int a = Integer.parseInt(valeur1);
+        int b = Integer.parseInt(valeur2);
+        int c = Integer.parseInt(valeur3);
 
-            int min = Math.min(a, b);
-            int max = Math.max(a, b);
+        int min = Math.min(a, b);
+        int max = Math.max(a, b);
 %>
-    <h2>Résultat :</h2>
+    <h2>Résultat de l'exercice 1 :</h2>
     <p>
-    <%
-            if (c >= min && c <= max) {
-    %>
+    <% if (c >= min && c <= max) { %>
         Oui, C (= <%= c %>) est compris entre A (= <%= a %>) et B (= <%= b %>).
-    <%
-            } else {
-    %>
+    <% } else { %>
         Non, C (= <%= c %>) n'est pas compris entre A (= <%= a %>) et B (= <%= b %>).
-    <%
-            }
-        } catch (NumberFormatException e) {
-    %>
-        <p style="color:red;">Veuillez saisir uniquement des nombres valides.</p>
-    <%
-        }
-    }
+    <% } %>
+    </p>
+<%
+    } catch (NumberFormatException e) {
 %>
+    <p style="color:red;">Erreur : veuillez saisir uniquement des chiffres valides.</p>
+<%
+    }
+} 
+%>
+           
 
 <h2>Exercice 2 : Pair ou Impair ?</h2>
 <p>Écrivez un programme pour vérifier si un nombre est pair ou impair en utilisant une structure if</p>
