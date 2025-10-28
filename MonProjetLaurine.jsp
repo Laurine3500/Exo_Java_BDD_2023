@@ -14,9 +14,11 @@ class Task {
   public String getTitre() { return titre;}
   public String getDescription() {return description;}
   public boolean isTerminee() {return termine;}
-  public void setTerminee(boolean terminee) { this.terminee = terminee; }
-  
- 
+  public void setTerminee(boolean terminee) { this.terminee = terminee; } 
 }
-  
+java.util.List<Task> task = (java.util.List<Task>) session.getAttribute("tasks");
+if (tasks == null){
+  tasks = new java.util.ArrayList<Task>();
+  session.setAttribute("tasks", tasks);
+}
   
