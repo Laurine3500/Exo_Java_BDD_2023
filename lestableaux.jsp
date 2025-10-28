@@ -48,14 +48,19 @@
 <p>L'utilisateur peut à présent saisir autant de valeurs qu'il le souhaite dans champs de saisie.</br>
 Ecrire un programme afin de faire la somme de toutes les valeurs saisie par l'utilisateur</p>
 
-<% if (tableauDeChiffres.length > 0) { %>
- int somme = 0;
+<% 
+if (chaine != null && !chaine.trim().equals("")) {
+    int somme = 0;
+    
+    // Parcourir toutes les valeurs du tableauDeChiffres
     for (int i = 0; i < tableauDeChiffres.length; i++) {
         int valeur = Integer.parseInt(tableauDeChiffres[i]);
         somme = somme + valeur;
-    }%>
+    }
+%>
 
 <p>La somme de toutes les valeurs saisies est : <%= somme %></p>
+
 <% } %>
 
 
