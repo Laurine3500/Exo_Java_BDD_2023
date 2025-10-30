@@ -47,6 +47,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Mini Gestionnaire de Tâches</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background-color: #f9f9f9; }
+        h1 { color: #333; }
+        form { margin-bottom: 20px; }
+        input[type="text"] { padding: 5px; width: 250px; }
+        input[type="submit"] { padding: 5px 10px; margin-left: 5px; }
+        .task { border: 1px solid #ccc; background-color: #fff; padding: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: 1px 1px 5px rgba(0,0,0,0.1); }
+        .task.done { background-color: #e0ffe0; text-decoration: line-through; }
+        .actions { margin-top: 5px; }
+        .actions form { display: inline; }
+    </style>
 </head>
 <body>
 <h1>Mini Gestionnaire de Tâches</h1>
@@ -68,24 +79,23 @@
         for (int i = 0; i < tasks.size(); i++) {
             Task t = tasks.get(i);
 %>
-    <div>
+    <div class="task <%= t.isTerminee() ? "done" : "" %>">
         <strong><%= t.getTitre() %></strong>
-        <% if (t.isTerminee()) { %> <span>(Terminée)</span> <% } %>
         <p><%= t.getDescription() %></p>
-
-        <% if (!t.isTerminee()) { %>
-            <form method="post" style="display:inline;">
-                <input type="hidden" name="action" value="terminer">
+        <div class="actions">
+            <% if (!t.isTerminee()) { %>
+                <form method="post">
+                    <input type="hidden" name="action" value="terminer">
+                    <input type="hidden" name="index" value="<%= i %>">
+                    <input type="submit" value="Marquer terminé">
+                </form>
+            <% } %>
+            <form method="post">
+                <input type="hidden" name="action" value="supprimer">
                 <input type="hidden" name="index" value="<%= i %>">
-                <input type="submit" value="Marquer terminé">
+                <input type="submit" value="Supprimer">
             </form>
-        <% } %>
-
-        <form method="post" style="display:inline;">
-            <input type="hidden" name="action" value="supprimer">
-            <input type="hidden" name="index" value="<%= i %>">
-            <input type="submit" value="Supprimer">
-        </form>
+        </div>
     </div>
 <%
         }
