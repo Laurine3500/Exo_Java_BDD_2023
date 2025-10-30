@@ -48,25 +48,101 @@
     <meta charset="UTF-8">
     <title>Mini Gestionnaire de Tâches</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 30px; background-color: #f9f9f9; }
-        h1 { color: #333; }
-        form { margin-bottom: 20px; }
-        input[type="text"] { padding: 5px; width: 250px; }
-        input[type="submit"] { padding: 5px 10px; margin-left: 5px; }
-        .task { border: 1px solid #ccc; background-color: #fff; padding: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: 1px 1px 5px rgba(0,0,0,0.1); }
-        .task.done { background-color: #e0ffe0; text-decoration: line-through; }
-        .actions { margin-top: 5px; }
-        .actions form { display: inline; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #fff;
+            background-color: #4CAF50; /* Vert professionnel */
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        form {
+            background-color: #4CAF50; /* même vert que le titre */
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            color: #fff; /* texte blanc lisible sur vert */
+            margin-bottom: 20px;
+        }
+
+        form input[type="text"] {
+            width: 95%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        form input[type="submit"] {
+            padding: 8px 15px;
+            border: none;
+            background-color: #2e7d32; /* vert foncé pour le bouton */
+            color: #fff;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #1b5e20;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .task {
+            border: 1px solid #ccc;
+            background-color: #fff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+        }
+
+        .task.done {
+            background-color: #e0ffe0;
+            text-decoration: line-through;
+        }
+
+        .actions {
+            margin-top: 5px;
+        }
+
+        .actions form {
+            display: inline;
+        }
+
+        .actions input[type="submit"] {
+            padding: 5px 10px;
+            font-size: 12px;
+            background-color: #2196F3;
+        }
+
+        .actions input[type="submit"]:hover {
+            background-color: #1976D2;
+        }
     </style>
 </head>
 <body>
+
 <h1>Mini Gestionnaire de Tâches</h1>
 
 <form method="post">
     <input type="hidden" name="action" value="ajouter">
-    <p>Titre : <input type="text" name="titre" required></p>
-    <p>Description : <input type="text" name="description"></p>
-    <p><input type="submit" value="Ajouter"></p>
+    <label>Titre :</label>
+    <input type="text" name="titre" required>
+    <label>Description :</label>
+    <input type="text" name="description">
+    <input type="submit" value="Ajouter">
 </form>
 
 <h2>Liste des tâches</h2>
