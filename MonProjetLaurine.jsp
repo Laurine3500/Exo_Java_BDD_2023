@@ -72,7 +72,6 @@
 </form>
 </div>
 
-<h2>Liste des tâches</h2>
 <%
     if (tasks.isEmpty()) {
 %>
@@ -80,47 +79,33 @@
 <%
     } else {
 %>
-    <table border="1" cellpadding="8" cellspacing="0">
-        <tr>
-            <th>Titre</th>
-            <th>Description</th>
-            <th>Date</th>
-            <th>Actions</th>
-        </tr>
 <%
         for (int i = 0; i < tasks.size(); i++) {
             Task t = tasks.get(i);
 %>
-        <tr <% if (t.isTerminee()) { %> class="terminee" <% } %> >
-            <td><%= t.getTitre() %></td>
-            <td><%= t.getDescription() %></td>
-            <td><%= t.getDateCreation() %></td>
-            <td>
-                <% if (!t.isTerminee()) { %>
-                    <form method="post" style="display:inline;">
-                        <input type="hidden" name="action" value="terminer">
-                        <input type="hidden" name="index" value="<%= i %>">
-                        <input type="submit" value="Terminer">
-                    </form>
-                <% } %>
-                <form method="post" style="display:inline;">
-                    <input type="hidden" name="action" value="supprimer">
-                    <input type="hidden" name="index" value="<%= i %>">
-                    <input type="submit" value="Supprimer">
-                </form>
-            </td>
-        </tr>
+    <div class="task" <% if (t.isTerminee()) { %> style="color: green;" <% } %> >
+        <strong><%= t.getTitre() %></strong> - <%= t.getDescription() %> (<%= t.getDateCreation() %>)
+        <% if (!t.isTerminee()) { %>
+            <form method="post" style="display:inline;">
+                <input type="hidden" name="action" value="terminer">
+                <input type="hidden" name="index" value="<%= i %>">
+                <input type="submit" value="Terminer">
+            </form>
+        <% } %>
+        <form method="post" style="display:inline;">
+            <input type="hidden" name="action" value="supprimer">
+            <input type="hidden" name="index" value="<%= i %>">
+            <input type="submit" value="Supprimer">
+        </form>
+    </div>
 <%
         }
 %>
-    </table>
 <%
     }
 %>
 </body>
 </html>
 
-</body>
-</html>
 
 
