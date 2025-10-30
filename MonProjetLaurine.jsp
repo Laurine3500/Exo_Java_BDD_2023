@@ -1,20 +1,25 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ page import="java.util.Date, java.text.SimpleDateFormat" %>
 <%
     class Task {
         private String titre;
         private String description;
         private boolean terminee;
+        private String dateHeure;
 
         public Task(String titre, String description) {
             this.titre = titre;
             this.description = description;
             this.terminee = false;
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            this.dateHeure = sdf.format(new Date());
         }
 
         public String getTitre() { return titre; }
         public String getDescription() { return description; }
         public boolean isTerminee() { return terminee; }
         public void setTerminee(boolean terminee) { this.terminee = terminee; }
+        public String getDateHeure() { return dateHeure; }
     }
 
     java.util.ArrayList<Task> tasks = (java.util.ArrayList<Task>) session.getAttribute("tasks");
@@ -55,7 +60,7 @@
         }
         h1 {
             color: #fff;
-            background-color: #6a0dad; /* Violet */
+            background-color: #6a0dad;
             padding: 15px;
             border-radius: 8px;
             text-align: center;
@@ -63,11 +68,11 @@
         }
 
         form {
-            background-color: #6a0dad; /* même violet que le titre */
+            background-color: #6a0dad;
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            color: #fff; /* texte blanc lisible sur violet */
+            color: #fff;
             margin-bottom: 20px;
         }
 
@@ -84,7 +89,7 @@
         form input[type="submit"] {
             padding: 8px 15px;
             border: none;
-            background-color: #4b0082; /* violet foncé pour le bouton */
+            background-color: #4b0082;
             color: #fff;
             font-weight: bold;
             border-radius: 5px;
@@ -99,22 +104,22 @@
             color: #333;
         }
 
-        .task {
-            border: 1px solid #ccc;
+        table {
+            width: 100%;
+            border-collapse: collapse;
             background-color: #fff;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
             box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
         }
 
-        .task.done {
-            background-color: #e0ffe0;
-            text-decoration: line-through;
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
         }
 
-        .actions {
-            margin-top: 5px;
+        th {
+            background-color: #6a0dad;
+            color: #fff;
         }
 
         .actions form {
@@ -125,6 +130,10 @@
             padding: 5px 10px;
             font-size: 12px;
             background-color: #2196F3;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
         }
 
         .actions input[type="submit"]:hover {
@@ -152,29 +161,42 @@
     <p>Aucune tâche pour le moment.</p>
 <%
     } else {
+%>
+    <table>
+        <tr>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Date et Heure</th>
+            <th>Actions</th>
+        </tr>
+<%
         for (int i = 0; i < tasks.size(); i++) {
             Task t = tasks.get(i);
 %>
-    <div class="task <%= t.isTerminee() ? "done" : "" %>">
-        <strong><%= t.getTitre() %></strong>
-        <p><%= t.getDescription() %></p>
-        <div class="actions">
-            <% if (!t.isTerminee()) { %>
+        <tr>
+            <td><%= t.getTitre() %></td>
+            <td><%= t.getDescription() %></td>
+            <td><%= t.getDateHeure() %></td>
+            <td class="actions">
+                <% if (!t.isTerminee()) { %>
+                    <form method="post">
+                        <input type="hidden" name="action" value="terminer">
+                        <input type="hidden" name="index" value="<%= i %>">
+                        <input type="submit" value="Marquer terminé">
+                    </form>
+                <% } %>
                 <form method="post">
-                    <input type="hidden" name="action" value="terminer">
+                    <input type="hidden" name="action" value="supprimer">
                     <input type="hidden" name="index" value="<%= i %>">
-                    <input type="submit" value="Marquer terminé">
+                    <input type="submit" value="Supprimer">
                 </form>
-            <% } %>
-            <form method="post">
-                <input type="hidden" name="action" value="supprimer">
-                <input type="hidden" name="index" value="<%= i %>">
-                <input type="submit" value="Supprimer">
-            </form>
-        </div>
-    </div>
+            </td>
+        </tr>
 <%
         }
+%>
+    </table>
+<%
     }
 %>
 
