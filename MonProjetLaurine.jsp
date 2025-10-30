@@ -1,20 +1,27 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%
+    import java.text.SimpleDateFormat;
+    import java.util.Date;
+
     class Task {
         private String titre;
         private String description;
         private boolean terminee;
+        private String dateCreation;
 
         public Task(String titre, String description) {
             this.titre = titre;
             this.description = description;
             this.terminee = false;
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            this.dateCreation = sdf.format(new Date());
         }
 
         public String getTitre() { return titre; }
         public String getDescription() { return description; }
         public boolean isTerminee() { return terminee; }
         public void setTerminee(boolean terminee) { this.terminee = terminee; }
+        public String getDateCreation() { return dateCreation; }
     }
 
     java.util.ArrayList<Task> tasks = (java.util.ArrayList<Task>) session.getAttribute("tasks");
@@ -107,7 +114,7 @@
             color: #fff;
         }
         tr.terminee {
-            background-color: #d4edda; /* vert clair */
+            background-color: #d4edda;
         }
         .actions form {
             display: inline;
@@ -151,6 +158,7 @@
         <tr>
             <th>Titre</th>
             <th>Description</th>
+            <th>Date</th>
             <th>Actions</th>
         </tr>
 <%
@@ -160,6 +168,7 @@
         <tr class="<%= t.isTerminee() ? "terminee" : "" %>">
             <td><%= t.getTitre() %></td>
             <td><%= t.getDescription() %></td>
+            <td><%= t.getDateCreation() %></td>
             <td class="actions">
                 <% if (!t.isTerminee()) { %>
                     <form method="post">
@@ -182,10 +191,6 @@
 <%
     }
 %>
-
-</body>
-</html>
-
 
 </body>
 </html>
