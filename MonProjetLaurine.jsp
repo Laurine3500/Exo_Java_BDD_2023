@@ -41,3 +41,81 @@ if ("ajouter".equals(action) && titre != null && !titre.trim().equals("")) {
         }
     }
 %>
+<html>
+<head>
+    <title>Mini Gestionnaire de Tâches</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        .task {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+        }
+        .terminee {
+            color: green;
+            font-weight: bold;
+        }
+        input[type="submit"] {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1>Mini Gestionnaire de Tâches</h1>
+<form method="post">
+    <input type="hidden" name="action" value="ajouter">
+    <p>
+        <label>Titre :</label><br>
+        <input type="text" name="titre" required>
+    </p>
+    <p>
+        <label>Description :</label><br>
+        <input type="text" name="description">
+    </p>
+    <p>
+        <input type="submit" value="Ajouter la tâche">
+    </p>
+</form>
+<%
+    if (tasks.isEmpty()) {
+%>
+    <p>Aucune tâche pour le moment.</p>
+<%
+    } else {
+        for (int i = 0; i < tasks.size(); i++) {
+            Task t = tasks.get(i);
+%>
+    <div class="task">
+        <strong><%= t.getTitre() %></strong>
+        <% if (t.isTerminee()) { %>
+            <span class="terminee">(Terminée)</span>
+        <% } %>
+        <p><%= t.getDescription() %></p>
+
+        <% if (!t.isTerminee()) { %>
+            <form method="post" style="display:inline;">
+                <input type="hidden" name="action" value="terminer">
+                <input type="hidden" name="index" value="<%= i %>">
+                <input type="submit" value="Marquer comme terminée">
+            </form>
+        <% } %>
+
+        <form method="post" style="display:inline;">
+            <input type="hidden" name="action" value="supprimer">
+            <input type="hidden" name="index" value="<%= i %>">
+            <input type="submit" value="Supprimer">
+        </form>
+    </div>
+<%
+        }
+    }
+%>
+</body>
+</html>
