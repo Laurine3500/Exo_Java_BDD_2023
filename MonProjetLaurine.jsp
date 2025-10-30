@@ -59,47 +59,42 @@
             background-color: #f5f5f5;
         }
         h1 {
-            color: #222; 
-            background-color: #d6b3ff; 
-            padding: 20px;
-            border-radius: 12px;
+            color: #fff; 
+            background-color: #6a0dad; 
+            padding: 15px;
+            border-radius: 8px;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            font-size: 28px;
-            font-weight: bold;
-            max-width: 700px; 
-            margin: 0 auto 30px auto; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
         }
 
         form {
-            background-color: #8a2be2;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            background-color: #6a0dad; 
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             color: #fff;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         form input[type="text"],
         form input[type="date"] {
-            width: 95%;
-            padding: 10px;
+             width: 95%;
+            padding: 8px;
             margin-top: 5px;
-            margin-bottom: 15px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            font-size: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 14px;
         }
 
         form input[type="submit"] {
-            padding: 10px 20px;
+            padding: 8px 15px;
             border: none;
             background-color: #4b0082;
             color: #fff;
             font-weight: bold;
-            border-radius: 6px;
+            border-radius: 5px;
             cursor: pointer;
-            transitio: background 0.3s;
         }
 
         form input[type="submit"]:hover {
@@ -111,9 +106,9 @@
         }
 
         table {
-            width: 90%; 
-            max-width: 700px; 
-            margin: 0 auto; 
+            width: 95%;         
+            max-width: 1000px;   
+            margin: 0 auto;      
             border-collapse: separate;
             border-spacing: 0;
             border-radius: 12px;
@@ -134,7 +129,8 @@
         }
 
         .actions form {
-            display: inline;
+            display: inline-block;  
+            margin-right: 5px; 
         }
 
         .actions input[type="submit"] {
