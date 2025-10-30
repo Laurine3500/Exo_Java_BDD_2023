@@ -1,33 +1,43 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%
+    // ============================
+    // Classe représentant une tâche
+    // ============================
+    class Task {
+        private String titre;
+        private String description;
+        private boolean terminee;
 
-class Task {
-  private String titre;
-  private String description;
-  private boolean terminee;
+        public Task(String titre, String description) {
+            this.titre = titre;
+            this.description = description;
+            this.terminee = false;
+        }
 
-  public Task(String titre, String desciption){
-    this.titre = titre;
-    this.description = description;
-    this.terminee = false;
-  }
-  public String getTitre() { return titre;}
-  public String getDescription() {return description;}
-  public boolean isTerminee() {return termine;}
-  public void setTerminee(boolean terminee) { this.terminee = terminee; } 
-}
-java.util.List<Task> task = (java.util.List<Task>) session.getAttribute("tasks");
-if (tasks == null){
-  tasks = new java.util.ArrayList<Task>();
-  session.setAttribute("tasks", tasks);
-}
-  
-String action = request.getParameter("action");
-String titre = request.getParameter("titre");
-String description = request.getParameter("description");
-String indexParam = request.getParameter("index");
+        public String getTitre() { return titre; }
+        public String getDescription() { return description; }
+        public boolean isTerminee() { return terminee; }
+        public void setTerminee(boolean terminee) { this.terminee = terminee; }
+    }
 
-if ("ajouter".equals(action) && titre != null && !titre.trim().equals("")) {
+    // ====================================================
+    // Récupération ou création de la liste de tâches (ArrayList)
+    // ====================================================
+    java.util.ArrayList<Task> tasks = (java.util.ArrayList<Task>) session.getAttribute("tasks");
+    if (tasks == null) {
+        tasks = new java.util.ArrayList<Task>();
+        session.setAttribute("tasks", tasks);
+    }
+
+    // ============================
+    // Traitement des actions
+    // ============================
+    String action = request.getParameter("action");
+    String titre = request.getParameter("titre");
+    String description = request.getParameter("description");
+    String indexParam = request.getParameter("index");
+
+    if ("ajouter".equals(action) && titre != null && !titre.trim().equals("")) {
         tasks.add(new Task(titre, description));
     } else if ("terminer".equals(action) && indexParam != null) {
         int index = Integer.parseInt(indexParam);
@@ -41,6 +51,7 @@ if ("ajouter".equals(action) && titre != null && !titre.trim().equals("")) {
         }
     }
 %>
+
 <html>
 <head>
     <title>Mini Gestionnaire de Tâches</title>
@@ -69,6 +80,10 @@ if ("ajouter".equals(action) && titre != null && !titre.trim().equals("")) {
 </head>
 <body>
 <h1>Mini Gestionnaire de Tâches</h1>
+
+<!-- ============================ -->
+<!-- Formulaire d'ajout de tâche -->
+<!-- ============================ -->
 <form method="post">
     <input type="hidden" name="action" value="ajouter">
     <p>
@@ -83,6 +98,11 @@ if ("ajouter".equals(action) && titre != null && !titre.trim().equals("")) {
         <input type="submit" value="Ajouter la tâche">
     </p>
 </form>
+
+<!-- ============================ -->
+<!-- Liste des tâches -->
+<!-- ============================ -->
+<h2>Liste des tâches</h2>
 <%
     if (tasks.isEmpty()) {
 %>
