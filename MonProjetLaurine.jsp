@@ -55,7 +55,7 @@
         }
         h1 {
             color: #fff;
-            background-color: #4CAF50; /* Vert professionnel */
+            background-color: #6a0dad; /* Violet */
             padding: 15px;
             border-radius: 8px;
             text-align: center;
@@ -63,11 +63,11 @@
         }
 
         form {
-            background-color: #4CAF50; /* même vert que le titre */
+            background-color: #6a0dad; /* même violet que le titre */
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            color: #fff; /* texte blanc lisible sur vert */
+            color: #fff; /* texte blanc lisible sur violet */
             margin-bottom: 20px;
         }
 
@@ -84,7 +84,7 @@
         form input[type="submit"] {
             padding: 8px 15px;
             border: none;
-            background-color: #2e7d32; /* vert foncé pour le bouton */
+            background-color: #4b0082; /* violet foncé pour le bouton */
             color: #fff;
             font-weight: bold;
             border-radius: 5px;
@@ -92,7 +92,7 @@
         }
 
         form input[type="submit"]:hover {
-            background-color: #1b5e20;
+            background-color: #3a0066;
         }
 
         h2 {
@@ -180,4 +180,5 @@
 
 </body>
 </html>
+
 
