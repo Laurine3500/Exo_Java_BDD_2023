@@ -22,3 +22,22 @@ if (tasks == null){
   session.setAttribute("tasks", tasks);
 }
   
+String action = request.getParameter("action");
+String titre = request.getParameter("titre");
+String description = request.getParameter("description");
+String indexParam = request.getParameter("index");
+
+if ("ajouter".equals(action) && titre != null && !titre.trim().equals("")) {
+        tasks.add(new Task(titre, description));
+    } else if ("terminer".equals(action) && indexParam != null) {
+        int index = Integer.parseInt(indexParam);
+        if (index >= 0 && index < tasks.size()) {
+            tasks.get(index).setTerminee(true);
+        }
+    } else if ("supprimer".equals(action) && indexParam != null) {
+        int index = Integer.parseInt(indexParam);
+        if (index >= 0 && index < tasks.size()) {
+            tasks.remove(index);
+        }
+    }
+%>
