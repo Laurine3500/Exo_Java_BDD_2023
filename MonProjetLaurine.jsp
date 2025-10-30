@@ -1,25 +1,20 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ page import="java.util.Date, java.text.SimpleDateFormat" %>
 <%
     class Task {
         private String titre;
         private String description;
         private boolean terminee;
-        private String dateHeure;
 
         public Task(String titre, String description) {
             this.titre = titre;
             this.description = description;
             this.terminee = false;
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-            this.dateHeure = sdf.format(new Date());
         }
 
         public String getTitre() { return titre; }
         public String getDescription() { return description; }
         public boolean isTerminee() { return terminee; }
         public void setTerminee(boolean terminee) { this.terminee = terminee; }
-        public String getDateHeure() { return dateHeure; }
     }
 
     java.util.ArrayList<Task> tasks = (java.util.ArrayList<Task>) session.getAttribute("tasks");
@@ -64,18 +59,14 @@
             padding: 15px;
             border-radius: 8px;
             text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
-
         form {
             background-color: #6a0dad;
             padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             color: #fff;
             margin-bottom: 20px;
         }
-
         form input[type="text"] {
             width: 95%;
             padding: 8px;
@@ -85,7 +76,6 @@
             border: 1px solid #ddd;
             font-size: 14px;
         }
-
         form input[type="submit"] {
             padding: 8px 15px;
             border: none;
@@ -95,37 +85,33 @@
             border-radius: 5px;
             cursor: pointer;
         }
-
         form input[type="submit"]:hover {
             background-color: #3a0066;
         }
-
         h2 {
             color: #333;
         }
-
         table {
             width: 100%;
             border-collapse: collapse;
             background-color: #fff;
             box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
         }
-
         th, td {
             border: 1px solid #ccc;
             padding: 10px;
             text-align: left;
         }
-
         th {
             background-color: #6a0dad;
             color: #fff;
         }
-
+        tr.terminee {
+            background-color: #d4edda; /* vert clair */
+        }
         .actions form {
             display: inline;
         }
-
         .actions input[type="submit"] {
             padding: 5px 10px;
             font-size: 12px;
@@ -135,7 +121,6 @@
             border-radius: 3px;
             cursor: pointer;
         }
-
         .actions input[type="submit"]:hover {
             background-color: #1976D2;
         }
@@ -166,17 +151,15 @@
         <tr>
             <th>Titre</th>
             <th>Description</th>
-            <th>Date et Heure</th>
             <th>Actions</th>
         </tr>
 <%
         for (int i = 0; i < tasks.size(); i++) {
             Task t = tasks.get(i);
 %>
-        <tr>
+        <tr class="<%= t.isTerminee() ? "terminee" : "" %>">
             <td><%= t.getTitre() %></td>
             <td><%= t.getDescription() %></td>
-            <td><%= t.getDateHeure() %></td>
             <td class="actions">
                 <% if (!t.isTerminee()) { %>
                     <form method="post">
@@ -199,6 +182,10 @@
 <%
     }
 %>
+
+</body>
+</html>
+
 
 </body>
 </html>
