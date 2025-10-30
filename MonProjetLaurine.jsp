@@ -59,14 +59,16 @@
             background-color: #f5f5f5;
         }
         h1 {
-            color: #fff;
-            backgroun: linear-gradient(135deg, #6a0dad, #9b30ff);
+            color: #222; 
+            background-color: #d6b3ff; 
             padding: 20px;
             border-radius: 12px;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             font-size: 28px;
-            font-weight: blod;
+            font-weight: bold;
+            max-width: 700px; 
+            margin: 0 auto 30px auto; 
         }
 
         form {
@@ -109,37 +111,40 @@
         }
 
         table {
-            width: 100%;
+            width: 90%; 
+            max-width: 700px; 
+            margin: 0 auto; 
             border-collapse: separate;
             border-spacing: 0;
-            border-radus: 12px;
-            background-color: #fff;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow:  0 2px 6px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            background-color: #fff;
         }
 
         th, td {
-            padding: 12px;
+            border: 1px solid #ccc;
+            padding: 10px;
             text-align: left;
         }
 
         th {
-           background: linear-gradient(135deg, #6a0dad, #9b30ff); /* dégradé violet */
-           color: #fff;
-           font-size: 16px;
+           background-color: #6a0dad;
+            color: #fff;
         }
 
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
+        .actions form {
+            display: inline;
         }
 
-        ..actions input[type="submit"] {
-            padding: 6px 12px;
-            font-size: 13px;
+        .actions input[type="submit"] {
+            padding: 5px 10px;
+            font-size: 12px;
             background-color: #2196F3;
             color: #fff;
-            border-radius: 5px;
-            transition: background 0.3s;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
         }
 
         .actions input[type="submit"]:hover {
