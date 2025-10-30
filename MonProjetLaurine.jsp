@@ -60,41 +60,44 @@
         }
         h1 {
             color: #fff;
-            background-color: #6a0dad;
-            padding: 15px;
-            border-radius: 8px;
+            backgroun: linear-gradient(135deg, #6a0dad, #9b30ff);
+            padding: 20px;
+            border-radius: 12px;
             text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            font-size: 28px;
+            font-weight: blod;
         }
 
         form {
-            background-color: #6a0dad;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: #8a2be2;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
             color: #fff;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         form input[type="text"],
         form input[type="date"] {
             width: 95%;
-            padding: 8px;
+            padding: 10px;
             margin-top: 5px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            font-size: 14px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 15px;
         }
 
         form input[type="submit"] {
-            padding: 8px 15px;
+            padding: 10px 20px;
             border: none;
             background-color: #4b0082;
             color: #fff;
             font-weight: bold;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
+            transitio: background 0.3s;
         }
 
         form input[type="submit"]:hover {
@@ -107,34 +110,36 @@
 
         table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radus: 12px;
             background-color: #fff;
-            box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+            overflow: hidden;
+            box-shadow:  0 2px 6px rgba(0,0,0,0.2);
         }
 
         th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
+            padding: 12px;
             text-align: left;
         }
 
         th {
-            background-color: #6a0dad;
-            color: #fff;
+           background: linear-gradient(135deg, #6a0dad, #9b30ff); /* dégradé violet */
+           color: #fff;
+           font-size: 16px;
         }
 
-        .actions form {
-            display: inline;
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
         }
 
-        .actions input[type="submit"] {
-            padding: 5px 10px;
-            font-size: 12px;
+        ..actions input[type="submit"] {
+            padding: 6px 12px;
+            font-size: 13px;
             background-color: #2196F3;
             color: #fff;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
         }
 
         .actions input[type="submit"]:hover {
