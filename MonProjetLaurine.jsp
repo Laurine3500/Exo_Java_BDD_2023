@@ -1,8 +1,5 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" import="java.text.SimpleDateFormat,java.util.Date,java.util.ArrayList,java.util.List" %>
 <%
-    import java.text.SimpleDateFormat;
-    import java.util.Date;
-
     class Task {
         private String titre;
         private String description;
@@ -24,9 +21,9 @@
         public String getDateCreation() { return dateCreation; }
     }
 
-    java.util.ArrayList<Task> tasks = (java.util.ArrayList<Task>) session.getAttribute("tasks");
+    List<Task> tasks = (List<Task>) session.getAttribute("tasks");
     if (tasks == null) {
-        tasks = new java.util.ArrayList<Task>();
+        tasks = new ArrayList<Task>();
         session.setAttribute("tasks", tasks);
     }
 
@@ -52,99 +49,28 @@
 
 <html>
 <head>
-    <meta charset="UTF-8">
     <title>Mini Gestionnaire de Tâches</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 30px;
-            background-color: #f5f5f5;
-        }
-        h1 {
-            color: #fff;
-            background-color: #6a0dad;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-        }
-        form {
-            background-color: #6a0dad;
-            padding: 15px;
-            border-radius: 8px;
-            color: #fff;
-            margin-bottom: 20px;
-        }
-        form input[type="text"] {
-            width: 95%;
-            padding: 8px;
-            margin-top: 5px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            font-size: 14px;
-        }
-        form input[type="submit"] {
-            padding: 8px 15px;
-            border: none;
-            background-color: #4b0082;
-            color: #fff;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        form input[type="submit"]:hover {
-            background-color: #3a0066;
-        }
-        h2 {
-            color: #333;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #fff;
-            box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #6a0dad;
-            color: #fff;
-        }
-        tr.terminee {
-            background-color: #d4edda;
-        }
-        .actions form {
-            display: inline;
-        }
-        .actions input[type="submit"] {
-            padding: 5px 10px;
-            font-size: 12px;
-            background-color: #2196F3;
-            color: #fff;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-        .actions input[type="submit"]:hover {
-            background-color: #1976D2;
-        }
+        body { font-family: Arial, sans-serif; margin: 30px; background-color: #fafafa; }
+        h1 { color: #333; }
+        form { margin-bottom: 20px; }
+        .form-container { background-color: violet; padding: 15px; border-radius: 8px; width: 400px; }
+        .task { border: 1px solid #ccc; background-color: #fff; padding: 10px; margin-bottom: 8px; border-radius: 4px; }
+        .terminee { color: green; font-weight: bold; }
+        input[type="submit"] { margin-left: 5px; }
     </style>
 </head>
 <body>
-
 <h1>Mini Gestionnaire de Tâches</h1>
 
+<div class="form-container">
 <form method="post">
     <input type="hidden" name="action" value="ajouter">
-    <label>Titre :</label>
-    <input type="text" name="titre" required>
-    <label>Description :</label>
-    <input type="text" name="description">
-    <input type="submit" value="Ajouter">
+    <p>Titre : <input type="text" name="titre" required></p>
+    <p>Description : <input type="text" name="description"></p>
+    <p><input type="submit" value="Ajouter"></p>
 </form>
+</div>
 
 <h2>Liste des tâches</h2>
 <%
@@ -154,7 +80,7 @@
 <%
     } else {
 %>
-    <table>
+    <table border="1" cellpadding="8" cellspacing="0">
         <tr>
             <th>Titre</th>
             <th>Description</th>
@@ -165,19 +91,19 @@
         for (int i = 0; i < tasks.size(); i++) {
             Task t = tasks.get(i);
 %>
-        <tr class="<%= t.isTerminee() ? "terminee" : "" %>">
+        <tr <% if (t.isTerminee()) { %> class="terminee" <% } %> >
             <td><%= t.getTitre() %></td>
             <td><%= t.getDescription() %></td>
             <td><%= t.getDateCreation() %></td>
-            <td class="actions">
+            <td>
                 <% if (!t.isTerminee()) { %>
-                    <form method="post">
+                    <form method="post" style="display:inline;">
                         <input type="hidden" name="action" value="terminer">
                         <input type="hidden" name="index" value="<%= i %>">
-                        <input type="submit" value="Marquer terminé">
+                        <input type="submit" value="Terminer">
                     </form>
                 <% } %>
-                <form method="post">
+                <form method="post" style="display:inline;">
                     <input type="hidden" name="action" value="supprimer">
                     <input type="hidden" name="index" value="<%= i %>">
                     <input type="submit" value="Supprimer">
@@ -191,6 +117,8 @@
 <%
     }
 %>
+</body>
+</html>
 
 </body>
 </html>
