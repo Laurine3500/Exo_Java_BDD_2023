@@ -66,8 +66,7 @@
             font-weight: bold;
             color: #6a0dad; 
             border: 3px solid #6a0dad;
-            display: block;
-            width: fit-content;
+            display: inline-block;
             padding: 15px 12px;
             border-radius: 12px;
             background-color: #f8f9fb;
