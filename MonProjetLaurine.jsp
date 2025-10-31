@@ -54,103 +54,144 @@
     <title>Mini Gestionnaire de Tâches</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 30px;
-            background-color: #f5f5f5;
+            font-family: "Segoe UI", "Roboto",sans-serif;
+            margin: 0;
+            background-color: #f8f9fb;
+            padding: 0;
+            color: #333;
         }
-        h1 {
+        header {
             color: #fff; 
             background-color: #6a0dad; 
-            padding: 15px;
-            border-radius: 8px;
+            padding: 20px;
+            border-radi: 26px;
+            font-weight: 600;
             text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
+            letter-spacing: 1px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1); 
         }
 
-        form {
-            background-color: #6a0dad; 
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            color: #fff;
-            margin-bottom: 20px;
-        }
-
-        form input[type="text"],
-        form input[type="date"] {
-             width: 95%;
-            padding: 8px;
-            margin-top: 5px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            font-size: 14px;
-        }
-
-        form input[type="submit"] {
-            padding: 8px 15px;
-            border: none;
-            background-color: #4b0082;
-            color: #fff;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        form input[type="submit"]:hover {
-            background-color: #3a0066;
+        main{
+            max-width: 900px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
         h2 {
             color: #333;
+            border-left: 5px solid #6a0dad;
+            padding-left: 10px;
+            margin-bottom: 20px;
+        }
+
+        form{
+            margin-bottom: 25px;
+        }
+
+        form label{
+            display: block;
+            font-weight: 600;
+            margin-top: 10px;
+            color: #333;
+        }
+
+        form input[type="text"],
+        form input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc; 
+            border-radius: 6px;
+            margin-top: 5px;
+            transition: all 0.2s ease-in-out;
+        }
+
+        form input[type="text"]:focus,
+        form input[type="date"]:focus {
+            border-color: #6a0dad;
+            box-shadow: 0 0 3px rgba(106,13,173,0.3);
+            outline: none;
+        }
+
+        form input[type="submit"] {
+            margin-top: 15px;
+            padding: 10px 18px;
+            border: none;
+            background-color: #6a0dad; 
+            color: #fff;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #4b0082; 
         }
 
         table {
-            width: 95%;         
-            max-width: 1000px;   
-            margin: 0 auto;      
-            border-collapse: separate;
-            border-spacing: 0;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-            background-color: #fff;
-        }
-
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
         }
 
         th {
-           background-color: #6a0dad;
-            color: #fff;
+            background-color: #f0e6fa; 
+            color: #4b0082;
+            text-align: left;
+            padding: 12px;
+            font-weight: 600;
+            border-bottom: 2px solid #ddd;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background-color: #faf8ff; 
+        }
+
+         .terminee {
+            background-color: #eafbea;
+            color: #2e7d32;
         }
 
         .actions form {
             display: inline-block;  
-            margin-right: 5px; 
+            margin: 0 5px; 
         }
 
         .actions input[type="submit"] {
             padding: 5px 10px;
-            font-size: 12px;
-            background-color: #2196F3;
+            font-size: 13px;
             color: #fff;
             border: none;
-            border-radius: 3px;
+            border-radius: 4px;
             cursor: pointer;
         }
 
-        .actions input[type="submit"]:hover {
-            background-color: #1976D2;
+         .actions input[value="Supprimer"] {
+            background-color: #e53935;
         }
 
-        .terminee {
-            background-color: #d9ffd9;
-            color: green;
-            font-weight: bold;
+        .actions input[value="Marquer terminé"]:hover {
+            background-color: #1976d2;
+        }
+
+        .actions input[value="Supprimer"]:hover {
+            background-color: #c62828;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+            font-size: 13px;
+            color: #777;
         }
     </style>
 </head>
@@ -158,65 +199,72 @@
 
 <h1>Mini Gestionnaire de Tâches</h1>
 
-<form method="post">
-    <input type="hidden" name="action" value="ajouter">
-    <label>Titre :</label>
-    <input type="text" name="titre" required>
-    <label>Description :</label>
-    <input type="text" name="description">
-    <label>Date d’échéance :</label>
-    <input type="date" name="dateEcheance" required>
-    <input type="submit" value="Ajouter">
-</form>
+<main>
+    <form method="post">
+        <input type="hidden" name="action" value="ajouter">
+        <label>Titre :</label>
+        <input type="text" name="titre" required>
 
-<h2>Liste des tâches</h2>
-<%
-    if (tasks.isEmpty()) {
-%>
-    <p>Aucune tâche pour le moment.</p>
-<%
-    } else {
-%>
-    <table>
-        <tr>
-            <th>Titre</th>
-            <th>Description</th>
-            <th>Date d’échéance</th>
-            <th>Actions</th>
-        </tr>
-<%
-        for (int i = 0; i < tasks.size(); i++) {
-            Task t = tasks.get(i);
-%>
-        <tr class="<%= t.isTerminee() ? "terminee" : "" %>">
-            <td><%= t.getTitre() %></td>
-            <td><%= t.getDescription() %></td>
-            <td><%= t.getDateEcheance() %></td>
-            <td class="actions">
-                <% if (!t.isTerminee()) { %>
+        <label>Description :</label>
+        <input type="text" name="description">
+
+        <label>Date d’échéance :</label>
+        <input type="date" name="dateEcheance" required>
+
+        <input type="submit" value="Ajouter la tâche">
+    </form>
+
+    <h2>Liste des tâches</h2>
+    <%
+        if (tasks.isEmpty()) {
+    %>
+        <p>Aucune tâche pour le moment.</p>
+    <%
+        } else {
+    %>
+        <!-- Tableau modernisé : fond clair, texte lisible -->
+        <table>
+            <tr>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Date d’échéance</th>
+                <th>Actions</th>
+            </tr>
+    <%
+            for (int i = 0; i < tasks.size(); i++) {
+                Task t = tasks.get(i);
+    %>
+            <tr class="<%= t.isTerminee() ? "terminee" : "" %>">
+                <td><%= t.getTitre() %></td>
+                <td><%= t.getDescription() %></td>
+                <td><%= t.getDateEcheance() %></td>
+                <td class="actions">
+                    <% if (!t.isTerminee()) { %>
+                        <form method="post">
+                            <input type="hidden" name="action" value="terminer">
+                            <input type="hidden" name="index" value="<%= i %>">
+                            <input type="submit" value="Marquer terminé">
+                        </form>
+                    <% } %>
                     <form method="post">
-                        <input type="hidden" name="action" value="terminer">
+                        <input type="hidden" name="action" value="supprimer">
                         <input type="hidden" name="index" value="<%= i %>">
-                        <input type="submit" value="Marquer terminé">
+                        <input type="submit" value="Supprimer">
                     </form>
-                <% } %>
-                <form method="post">
-                    <input type="hidden" name="action" value="supprimer">
-                    <input type="hidden" name="index" value="<%= i %>">
-                    <input type="submit" value="Supprimer">
-                </form>
-            </td>
-        </tr>
-<%
+                </td>
+            </tr>
+    <%
+            }
+    %>
+        </table>
+    <%
         }
-%>
-    </table>
-<%
-    }
-%>
+    %>
+</main>
+
+<footer>© 2025 - Mini Gestionnaire de Tâches | Design épuré violet</footer>
 
 </body>
 </html>
-
 
 
