@@ -60,15 +60,19 @@
             padding: 0;
             color: #333;
         }
-        header {
-            color: #fff; 
-            background-color: #6a0dad; 
-            padding: 20px;
-            border-radi: 26px;
-            font-weight: 600;
+        .page-title {
             text-align: center;
-            letter-spacing: 1px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1); 
+            font-size: 28px;
+            font-weight: bold;
+            color: #6a0dad; 
+            border: 3px solid #6a0dad;
+            display: block;
+            width: fit-content;
+            padding: 15px 12px;
+            border-radius: 12px;
+            background-color: #f8f9fb;
+            margin: 30px auto 20px auto
+            box-shadow: 0 2px 6px rgba(106,13,173,0.1); 
         }
 
         main{
@@ -165,15 +169,6 @@
             margin: 0 5px; 
         }
 
-        .actions input[type="submit"] {
-            padding: 5px 10px;
-            font-size: 13px;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
          .actions input[value="Supprimer"] {
             background-color: #e53935;
         }
@@ -190,8 +185,9 @@
             text-align: center;
             padding: 15px;
             margin-top: 40px;
-            font-size: 13px;
-            color: #777;
+            font-size: 14px;
+            color: #4b0082;
+            font-weignt: 500;
         }
     </style>
 </head>
@@ -262,7 +258,7 @@
     %>
 </main>
 
-<footer>© 2025 - Mini Gestionnaire de Tâches | Design épuré violet</footer>
+<footer>© 2025 - Mini Gestionnaire de Tâches | Laurine FILOCHE</footer>
 
 </body>
 </html>
