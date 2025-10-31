@@ -193,7 +193,7 @@
 </head>
 <body>
 
-<h1>Mini Gestionnaire de Tâches</h1>
+<h1>class="page-title">Mini Gestionnaire de Tâches</h1>
 
 <main>
     <form method="post">
