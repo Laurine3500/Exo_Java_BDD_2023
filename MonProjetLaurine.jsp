@@ -61,9 +61,7 @@
             color: #333;
         }
         .page-title {
-            display: flex;                 
-            justify-content: center;       
-            align-items: center;           
+            text-align: center;           
             font-size: 28px;
             font-weight: bold;
             color: #6a0dad;
@@ -72,8 +70,9 @@
             border-radius: 12px;
             background-color: #f8f9fb;
             margin: 30px auto 20px auto;  
+            display: block;               
+            width: fit-content;          
             box-shadow: 0 2px 6px rgba(106,13,173,0.1);
-            width: fit-content; 
         }
 
         main{
