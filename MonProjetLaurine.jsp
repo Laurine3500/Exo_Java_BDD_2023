@@ -71,7 +71,7 @@
             padding: 15px 12px;
             border-radius: 12px;
             background-color: #f8f9fb;
-            margin: 30px auto 20px auto
+            margin: 30px auto 20px auto;
             box-shadow: 0 2px 6px rgba(106,13,173,0.1); 
         }
 
