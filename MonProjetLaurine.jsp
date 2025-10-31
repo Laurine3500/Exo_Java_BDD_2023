@@ -61,17 +61,19 @@
             color: #333;
         }
         .page-title {
-            text-align: center;
+            display: flex;                 
+            justify-content: center;       
+            align-items: center;           
             font-size: 28px;
             font-weight: bold;
-            color: #6a0dad; 
+            color: #6a0dad;
             border: 3px solid #6a0dad;
-            display: inline-block;
             padding: 15px 12px;
             border-radius: 12px;
             background-color: #f8f9fb;
-            margin: 30px auto 20px auto;
-            box-shadow: 0 2px 6px rgba(106,13,173,0.1); 
+            margin: 30px auto 20px auto;  
+            box-shadow: 0 2px 6px rgba(106,13,173,0.1);
+            width: fit-content; 
         }
 
         main{
